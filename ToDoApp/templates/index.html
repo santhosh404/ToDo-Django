@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block body %}
+<strong>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col" style="color: green;">Tasks</th>
+      <th scope="col" style="color: red;">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if model %}
+    {% for todo in model %}
+    <tr style="color: green;">
+      <td>  {{ todo.task }} </td>
+      <td>   <form action="delete/{{ todo.id }}/" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>  
+  </form></td>
+ </tr>
+ {% endfor %}
+ {% else %}
+ <li>No Tasks..</li>
+ {% endif %}
+
+ 
+</tbody>
+</table>
+</strong>
+<br>
+
+
+<a name="" id="" class="btn btn-primary" href="{% url 'tasks' %}" role="button">Add Tasks</a>
+
+
+
+{% endblock %}
